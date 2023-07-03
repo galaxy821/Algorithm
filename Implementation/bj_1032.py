@@ -4,9 +4,9 @@
 
 n = int(input())
 
-for _ in range(n) : 
+for i in range(n) : 
     name = input()
-    if _ == 0 :
+    if i == 0 :
         result = list(name)
     else :
         for j in range(len(name)) :
