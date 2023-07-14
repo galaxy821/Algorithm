@@ -1,18 +1,21 @@
 """
 수 이어 쓰기 [https://www.acmicpc.net/problem/1748]
 """
+import sys
 import math
 
-n = int(input())
+n = sys.stdin.readline().strip()
+num_len = len(n)
+current_len = 1
 
+anwser = 0
+while True:
+    if current_len == num_len:
+        break
+    anwser += int(math.pow(10, current_len) -
+                  math.pow(10, current_len-1))*current_len
+    current_len += 1
 
-def find_num(n):
-    if n < 10:
-        return n
-    else:
-        count = int(math.log10(n))
-        low_max = pow(10, count)-1
-        return (n - low_max) * (count+1) + find_num(low_max)
+anwser += (int(int(n) % math.pow(10, current_len-1))+1)*current_len
 
-
-print(find_num(n))
+print(anwser)
