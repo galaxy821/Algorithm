@@ -12,21 +12,14 @@ cur_position = 0
 for _ in range(num):
     position, red_time, blue_time = map(
         int, sys.stdin.readline().strip().split())
-    app_time = position - cur_position
+    duration += (position - cur_position)
 
-    if app_time < red_time:
-        duration += (app_time + red_time)
-    elif app_time < (red_time + blue_time):
-        duration += app_time
+    left_time = duration % (red_time + blue_time)
+    if left_time < red_time:
+        duration += (red_time-left_time)
     else:
-        left_time = app_time % (red_time + blue_time)
-        if left_time < red_time:
-            duration += app_time + (red_time+left_time)
-        else:
-            duration += app_time
-    print(app_time, cur_position, duration)
-    cur_position = position
+        cur_position += (left_time-red_time)
+    cur_position += (position - cur_position)
 
 duration += length - cur_position
-print(cur_position, duration)
 print(duration)
