@@ -27,21 +27,17 @@ if zero_count == 0:
     print(result)
 else:
     while q:
-        print(q)
-        h, x, y, day = q.popleft()
+        l, x, y, day = q.popleft()
 
         result = day
 
         for dh, dx, dy in dir:
-            nh, nx, ny = h + dh, x + dx, y + dy
-            print(nh, nx, ny)
+            nh, nx, ny = l + dh, x + dx, y + dy
 
             if 0 <= nh < h and 0 <= nx < n and 0 <= ny < m and data[nh][nx][ny] == 0:
-                print(data[nh][nx][ny])
                 q.append((nh, nx, ny, day+1))
                 data[nh][nx][ny] = 1
                 zero_count -= 1
-    print(zero_count)
     if zero_count == 0:
         print(result)
     else:
